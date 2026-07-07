@@ -4,3 +4,17 @@
 #4 Selecting a Radiobutton -- Also with "Command=". It checks the shared variable 
 #5 Closing the Window -- Handled with the "window.protocol()"
 
+import os
+import tkinter as tk
+from tkinter import ttk, messagebox
+import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
+import numpy as np
+import pandas as pd
+
+def submit_form():
+    name=name_entry.get().strip()
+    age_text=age_entry.get().strip()
+    if name=="":
+        messagebox.showerror("Error, Please enter your name")
+        return
