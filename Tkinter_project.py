@@ -4,22 +4,45 @@
 #4 Selecting a Radiobutton -- Also with "Command=". It checks the shared variable 
 #5 Closing the Window -- Handled with the "window.protocol()"
 
-import os
 import tkinter as tk
-from tkinter import ttk, messagebox
-import matplotlib.pyplot as plt
-import matplotlib.dates as mdates
-import numpy as np
-import pandas as pd
+from tkinter import messagebox
 
 def submit_form():
-    name=name_entry.get().strip()
-    age_text=age_entry.get().strip()
-    if name=="":
-        messagebox.showerror("Error, Please enter your name")
+    name = name_entry.get().strip()
+    age_text = age_entry.get().strip()
+
+    if name == "":
+        messagebox.showerror("Error", "Please enter your name.")
         return
+
     try:
-        age=int(age_text)
+        age = int(age_text)
     except ValueError:
-        messagebox.showerror("Age must be a valid number")
-    
+        messagebox.showerror("Error", "Age must be a whole number.")
+        return
+
+    messagebox.showinfo(
+        "Form Submitted",
+        f"Name: {name}\nAge: {age}"
+    )
+
+window = tk.Tk()
+window.title("Simple Form")
+window.geometry("300x200")
+
+tk.Label(window, text="Name:").pack(pady=(15, 0))
+name_entry = tk.Entry(window)
+name_entry.pack()
+
+tk.Label(window, text="Age:").pack(pady=(10, 0))
+age_entry = tk.Entry(window)
+age_entry.pack()
+
+submit_button = tk.Button(
+    window,
+    text="Submit",
+    command=submit_form
+)
+submit_button.pack(pady=20)
+
+window.mainloop()
