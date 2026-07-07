@@ -18,3 +18,8 @@ def submit_form():
     if name=="":
         messagebox.showerror("Error, Please enter your name")
         return
+    try:
+        age=int(age_text)
+    except ValueError:
+        messagebox.showerror("Age must be a valid number")
+    
